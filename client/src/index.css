@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background: #ecf0f3;
+}
+
+/* .sidebar {
+  background-image: linear-gradient(
+    to left top,
+    #ff8d74,
+    #ff8883,
+    #ff8492,
+    #ff83a3,
+    #ff83b4
+  );
+} */
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.content {
+  height: calc(100vh - theme('spacing.16'));
+}
+
+.menu {
+  border: 2px solid #ecf0f3;
+}
+
+/* .sidebar, */
+.dash-components,
+.customer-table {
+  background: #ecf0f3;
+  box-shadow: 8px 8px 16px #d7dadd, -8px -8px 16px #ffffff;
+}
+
+.profiles-dashboard {
+  background-image: linear-gradient(
+    to right,
+    #fda4af,
+    #feaeb5,
+    #ffb8bc,
+    #ffc1c3,
+    #ffcbcb
+  );
+}
