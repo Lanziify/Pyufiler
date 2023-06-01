@@ -44,7 +44,7 @@ function Customers() {
               Customer Profiles
             </h1>
             <button
-              className='py-2 px-4 text-xs rounded-lg bg-rose-400 hover:bg-rose-500 md:mt-0 sm:mt-3 sm:self-end text-white shadow-md ease-in-out duration-300'
+              className='py-2 px-4 lg:text-md md:text-xs sm:text-xs rounded-lg bg-rose-400 hover:bg-rose-500 md:mt-0 sm:mt-3 sm:self-end text-white shadow-md ease-in-out duration-300'
               onClick={() => setShowModal(true)}
             >
               Add Profile

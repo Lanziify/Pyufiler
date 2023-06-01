@@ -17,6 +17,7 @@ app.use(express.json())
 
 // Routes
 app.use('/api/profile', require('./routes/profileRoute'))
+app.use('/api/admin', require('./routes/adminRoute'))
 
 // Error handling middleware
 app.use(errorHandler)

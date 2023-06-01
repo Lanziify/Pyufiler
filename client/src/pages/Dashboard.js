@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useInterval } from 'react-use'
 import axios from 'axios'
 import { baseURL } from '../utils/constants'
-import { MdPeople, MdAccessTime, MdLocationOn } from 'react-icons/md'
+import { MdPerson, MdPeople, MdAccessTime, MdLocationOn } from 'react-icons/md'
 
 function Dashboard() {
   const [profiles, setProfiles] = useState([])
@@ -96,7 +96,7 @@ function Dashboard() {
         setWeeklyProfiles(profilesPastWeek)
       })
       .catch((err) => setError('Error fetching profiles'))
-  }, [currentDate])
+  }, [])
 
   useInterval(() => {
     setCurrentDate(new Date())
@@ -129,67 +129,31 @@ function Dashboard() {
       <div className='flex lg:flex-row md:flex-col sm:flex-col h-auto gap-5'>
         <div className='flex-1'>
           <span className='text-sm text-gray-400'>Recently Added</span>
-          <div className='no-scrollbar w-auto md:h-80 sm:h-40 grid grid-cols-1 gap-5 p-2 my-5 rounded-md text-sm justify-center overflow-auto'>
+          <div className='added-components no-scrollbar w-auto p-2 my-5 rounded-md text-sm justify-center overflow-auto'>
             {recentProfiles.map((profile, index) => (
               <div
-                className='profiles-dashboard flex p-3 gap-3 items-center text-gray-500 rounded-lg shadow-md'
+                className='profiles-dashboard h-fit px-2 py-1 items-center text-gray-500 rounded-lg'
                 key={index}
               >
-                <div className='flex w-20 h-20 rounded-full border-2 text-gray-50'>
-                  <span className='m-auto font-bold text-2xl'>{index + 1}</span>
-                </div>
-                <div className='text-xs'>
-                  <p>
-                    <span className='font-bold'>ID:</span> {profile._id}
-                  </p>
-                  <p>
-                    <span className='font-bold'>Age:</span> {profile.age}
-                  </p>
-                  <p>
-                    <span className='font-bold'>Gender:</span> {profile.gender}
-                  </p>
-                  <p>
-                    <span className='font-bold'>Address:</span>{' '}
-                    {profile.address}
-                  </p>
-                  <p>
-                    <span className='font-bold'>Employment:</span>{' '}
-                    {profile.employment}
-                  </p>
+                <div className='flex gap-1 text-xs items-center'>
+                  <MdPerson className='text-rose-300' size={24}/>
+                    <span>ID: {profile._id}</span> 
                 </div>
               </div>
             ))}
           </div>
         </div>
         <div className='flex-1'>
-          <span className='text-sm text-gray-400'>Profiles this week</span>
-          <div className='no-scrollbar w-auto md:h-80 sm:h-40 grid grid-cols-1 gap-5 p-2 my-5 rounded-md text-sm justify-center overflow-auto'>
+          <span className='text-sm text-gray-400'>Added this week</span>
+          <div className='added-components no-scrollbar w-auto p-2 my-5 rounded-md text-sm justify-center overflow-auto'>
             {weeklyProfiles.map((profile, index) => (
               <div
-                className='profiles-dashboard flex p-3 gap-3 items-center text-gray-500 rounded-lg shadow-md'
+                className='profiles-dashboard h-fit px-2 py-1 items-center text-gray-500 rounded-lg'
                 key={index}
               >
-                <div className='flex w-20 h-20 rounded-full border-2 text-gray-50'>
-                  <span className='m-auto font-bold text-2xl'>{index + 1}</span>
-                </div>
-                <div className='text-xs'>
-                  <p>
-                    <span className='font-bold'>ID:</span> {profile._id}
-                  </p>
-                  <p>
-                    <span className='font-bold'>Age:</span> {profile.age}
-                  </p>
-                  <p>
-                    <span className='font-bold'>Gender:</span> {profile.gender}
-                  </p>
-                  <p>
-                    <span className='font-bold'>Address:</span>{' '}
-                    {profile.address}
-                  </p>
-                  <p>
-                    <span className='font-bold'>Employment:</span>{' '}
-                    {profile.employment}
-                  </p>
+                <div className='flex gap-1 text-xs items-center'>
+                  <MdPerson className='text-rose-300' size={24}/>
+                    <span>ID: {profile._id}</span> 
                 </div>
               </div>
             ))}

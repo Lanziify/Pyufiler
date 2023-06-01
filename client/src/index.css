@@ -38,18 +38,8 @@ body {
 
 /* .sidebar, */
 .dash-components,
+.added-components,
 .customer-table {
   background: #ecf0f3;
   box-shadow: 8px 8px 16px #d7dadd, -8px -8px 16px #ffffff;
-}
-
-.profiles-dashboard {
-  background-image: linear-gradient(
-    to right,
-    #fda4af,
-    #feaeb5,
-    #ffb8bc,
-    #ffc1c3,
-    #ffcbcb
-  );
 }
