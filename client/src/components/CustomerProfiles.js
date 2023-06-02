@@ -1,12 +1,17 @@
 import React, { useState } from 'react'
 import DataTable from 'react-data-table-component'
+import { TbFileExport } from 'react-icons/tb'
 import { BiEdit, BiEraser } from 'react-icons/bi'
+import { CSVLink } from 'react-csv'
 
 const CustomerProfiles = ({ data, selectedProfile, onEdit, onDelete }) => {
   const [searchProfiles, setSearchProfiles] = useState('')
 
   const searchedItems = data.filter((item) => {
-    return item.address.toLowerCase().includes(searchProfiles.toLowerCase())
+    return (
+      item._id.toLowerCase().includes(searchProfiles.toLowerCase()) ||
+      item.address.toLowerCase().includes(searchProfiles.toLowerCase())
+    )
   })
 
   const columns = [
@@ -20,7 +25,6 @@ const CustomerProfiles = ({ data, selectedProfile, onEdit, onDelete }) => {
       name: 'Age',
       selector: (data) => data.age,
       sortable: true,
-      // width: '8rem'
     },
     {
       name: 'Gender',
@@ -31,7 +35,7 @@ const CustomerProfiles = ({ data, selectedProfile, onEdit, onDelete }) => {
       name: 'Address',
       selector: (data) => data.address,
       sortable: true,
-      width: '20rem'
+      width: '30rem',
     },
     {
       name: 'Employment',
@@ -48,7 +52,7 @@ const CustomerProfiles = ({ data, selectedProfile, onEdit, onDelete }) => {
               onEdit(true)
               selectedProfile(p)
             }}
-            className='p-2 rounded-lg text-gray-400 hover:bg-gray-50 hover:text-white ease-in-out duration-500'
+            className='p-2 rounded-lg text-gray-400 hover:bg-gray-400 hover:text-white ease-in-out duration-500'
           >
             <BiEdit size={20} />
           </button>
@@ -60,7 +64,6 @@ const CustomerProfiles = ({ data, selectedProfile, onEdit, onDelete }) => {
           </button>
         </div>
       ),
-      width: '8rem'
     },
   ]
 
@@ -88,16 +91,41 @@ const CustomerProfiles = ({ data, selectedProfile, onEdit, onDelete }) => {
     },
   }
 
+  const csvHeaders = [
+    { label: 'Customer ID', key: '_id' },
+    { label: 'Age', key: 'age' },
+    { label: 'Gender', key: 'gender' },
+    { label: 'Address', key: 'address' },
+    { label: 'Employment', key: 'employment' },
+  ]
+
+  const csvData = searchedItems.map((item) => ({
+    _id: item._id,
+    age: item.age,
+    gender: item.gender,
+    address: item.address,
+    employment: item.employment,
+  }))
+
   return (
     <div className='customer-table flex flex-col text-center overflow-auto rounded-2xl'>
-      <div className='flex p-5'>
+      <div className='flex p-5 justify-between'>
         <input
-          className='grow p-2 rounded-md text-sm bg-gray-300 hover:bg-gray-200 outline-none ease-in-out duration-300 placeholder-gray-500'
+          className='flex-0 p-2 rounded-md text-sm bg-gray-300 hover:bg-gray-200 outline-none ease-in-out duration-300 placeholder-gray-500'
           value={searchProfiles}
           type='text'
           placeholder='Search'
-          onChange={e => setSearchProfiles(e.target.value)}
+          onChange={(e) => setSearchProfiles(e.target.value)}
         />
+        <CSVLink
+          data={csvData}
+          headers={csvHeaders}
+          filename='customer_profiles.csv'
+          className='flex px-4 py-1 text-xs justify-end items-center gap-1 rounded-lg text-white bg-gray-400 hover:bg-gray-500 hover:text-white ease-in-out duration-500'
+        >
+          Export CSV
+          <TbFileExport size={16} />
+        </CSVLink>
       </div>
       <div className='data-table lg:text-md md:text-xs sm:text-xs'>
         <DataTable

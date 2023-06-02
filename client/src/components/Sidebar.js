@@ -12,24 +12,25 @@ import { FaCarrot } from 'react-icons/fa'
 
 const Sidebar = () => {
   const [openSideBar, setOpenSideBar] = useState(false)
+
   const menuItems = [
     {
-      path: '/Dashboard',
+      path: '/dashboard',
       name: 'Dashboard',
       icon: <MdSpaceDashboard />,
     },
     {
-      path: '/Customers',
+      path: '/customers',
       name: 'Customers',
       icon: <MdPeople />,
     },
     {
-      path: '/Settings',
+      path: '/settings',
       name: 'Settings',
       icon: <MdSettings />,
     },
     {
-      path: '/About',
+      path: '/about',
       name: 'About',
       icon: <MdOutlineInfo />,
     },
@@ -54,7 +55,9 @@ const Sidebar = () => {
           <MdChevronLeft
             className={`menu absolute w-fit p-1 md:-right-5 sm:-right-8 sm:top-3.5 text-4xl rounded-md bg-rose-400 text-gray-50  ${
               !openSideBar && 'rotate-180'
-            } ${openSideBar ? 'md:-right-5 sm:right-3' : ''} ease-in-out duration-500`}
+            } ${
+              openSideBar ? 'md:-right-5 sm:right-3' : ''
+            } ease-in-out duration-500`}
             onClick={() => setOpenSideBar(!openSideBar)}
           />
           <div className='flex flex-col justify-center items-center my-16  '>
@@ -90,7 +93,7 @@ const Sidebar = () => {
             >
               <div
                 className={`text-2xl ${
-                  !openSideBar && 'm-auto ' 
+                  !openSideBar && 'm-auto '
                 } ease-in-out duration-500`}
               >
                 {item.icon}
@@ -104,6 +107,7 @@ const Sidebar = () => {
               </div>
             </NavLink>
           ))}
+          
         </div>
       </div>
     </>

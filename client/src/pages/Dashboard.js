@@ -37,7 +37,7 @@ function Dashboard() {
       value: getUniqueAddresses(profiles),
     },
     {
-      title: 'Employment status',
+      title: 'Employment Status',
       icon: <MdLocationOn />,
       value: getUniqueEmployment(profiles),
     },
@@ -129,35 +129,46 @@ function Dashboard() {
       <div className='flex lg:flex-row md:flex-col sm:flex-col h-auto gap-5'>
         <div className='flex-1'>
           <span className='text-sm text-gray-400'>Recently Added</span>
-          <div className='added-components no-scrollbar w-auto p-2 my-5 rounded-md text-sm justify-center overflow-auto'>
-            {recentProfiles.map((profile, index) => (
-              <div
-                className='profiles-dashboard h-fit px-2 py-1 items-center text-gray-500 rounded-lg'
-                key={index}
-              >
-                <div className='flex gap-1 text-xs items-center'>
-                  <MdPerson className='text-rose-300' size={24}/>
-                    <span>ID: {profile._id}</span> 
+          {recentProfiles?.length ? (
+            <div className='added-components no-scrollbar w-auto p-2 my-5 rounded-md text-sm justify-center overflow-auto'>
+              {recentProfiles.map((profile, index) => (
+                <div
+                  className='profiles-dashboard h-fit px-2 py-1 items-center text-gray-500 rounded-lg'
+                  key={index}
+                >
+                  <div className='flex gap-1 text-xs items-center'>
+                    <MdPerson className='text-rose-300' size={24} />
+                    <span>ID: {profile._id}</span>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          ) : (
+            <div className='added-components no-scrollbar w-auto p-5 my-5 rounded-md text-sm text-center text-gray-400 justify-center overflow-auto'>
+              There are no data to display</div>
+          )}
         </div>
+
         <div className='flex-1'>
-          <span className='text-sm text-gray-400'>Added this week</span>
-          <div className='added-components no-scrollbar w-auto p-2 my-5 rounded-md text-sm justify-center overflow-auto'>
-            {weeklyProfiles.map((profile, index) => (
-              <div
-                className='profiles-dashboard h-fit px-2 py-1 items-center text-gray-500 rounded-lg'
-                key={index}
-              >
-                <div className='flex gap-1 text-xs items-center'>
-                  <MdPerson className='text-rose-300' size={24}/>
-                    <span>ID: {profile._id}</span> 
+          <span className='text-sm text-gray-400'>Profiles Added This Week</span>
+          {weeklyProfiles?.length ? (
+            <div className='added-components no-scrollbar w-auto p-2 my-5 rounded-md text-sm justify-center overflow-auto'>
+              {weeklyProfiles.map((profile, index) => (
+                <div
+                  className='profiles-dashboard h-fit px-2 py-1 items-center text-gray-500 rounded-lg'
+                  key={index}
+                >
+                  <div className='flex gap-1 text-xs items-center'>
+                    <MdPerson className='text-rose-300' size={24} />
+                    <span>ID: {profile._id}</span>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          ) : (
+            <div className='added-components no-scrollbar w-auto p-5 my-5 rounded-md text-sm text-center text-gray-400 justify-center overflow-auto'>
+              There are no data to display</div>
+          )}
         </div>
       </div>
     </div>

@@ -25,21 +25,6 @@ const getCurrentDayProfiles = asyncHandler(async (req, res) => {
   })
   res.status(200).json(profiles)
 })
-const getWeekProfiles = asyncHandler(async (req, res) => {
-  const currentDate = new Date()
-  const year = currentDate.getFullYear()
-  const month = currentDate.getMonth() + 1
-  const day = currentDate.getDate()
-
-  // Filter the profiles based on the current day
-  const profiles = await Profile.find({
-    createdAt: {
-      $gte: new Date(year, month - 1, day),
-      $lt: new Date(year, month - 1, day + 7),
-    },
-  })
-  res.status(200).json(profiles)
-})
 
 const createProfile = asyncHandler(async (req, res) => {
   const { age, gender, address, employment } = req.body
@@ -97,7 +82,7 @@ const deleteProfile = asyncHandler(async (req, res) => {
 module.exports = {
   getProfiles,
   getCurrentDayProfiles,
-  getWeekProfiles,
+  // getWeekProfiles,
   createProfile,
   getProfile,
   updateProfile,
